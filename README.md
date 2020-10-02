@@ -6,7 +6,7 @@
 
 ## How it works
 
-> Just type a desired name (or don't, an app will generate some hash for you) and submit the form. As an output you will get shortened URL!
+> Just type a desired name (or don't, the app will generate some hash for you) and submit the form. As an output you will get shortened URL!
 
 ## Installation
 
