@@ -10,7 +10,16 @@ Just type a desired name (or don't, the app will generate some hash for you) and
 
 ## Installation
 
-Upload files to your server and change the login data in api.php file. You are ready to go!
+Create a .htaccess file in root directory where you are going to upload the app and paset code below
+```
+RewriteCond %{THE_REQUEST} /index\.php\?p=([^\s&]+) [NC]
+RewriteRule ^ %1? [R=302,L]
+
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+?)/?$ index.php?p=$1 [L,QSA]
+```
+Then upload all the other files from this repo to your server and change the login data in api.php file. You are ready to go!
 
 ## Live example
 
