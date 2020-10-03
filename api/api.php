@@ -40,7 +40,7 @@ function generateHash() {
 
 // handle ?p=...
 if(isset($_GET['p'])){
-    echo 'test';
+    
     $hash = $_GET['p'];
     // check if it exists in database
     $query = $db->query("SELECT `url` FROM `redirects` WHERE `hash`=? LIMIT 1", [$hash]);
