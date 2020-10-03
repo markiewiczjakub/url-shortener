@@ -14,6 +14,8 @@ CREATE TABLE IF NOT EXISTS `redirects`  (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `hash` varchar(255) NOT NULL,
     `url` varchar(255) NOT NULL,
+	`hits` int(5) NOT NULL DEFAULT \'0\',
+	`created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ';
@@ -40,13 +42,19 @@ function generateHash() {
 
 // handle ?p=...
 if(isset($_GET['p'])){
-    echo 'test';
+    
     $hash = $_GET['p'];
     // check if it exists in database
-    $query = $db->query("SELECT `url` FROM `redirects` WHERE `hash`=? LIMIT 1", [$hash]);
+    $query = $db->query("SELECT `url`, `hits` FROM `redirects` WHERE `hash`=? LIMIT 1", [$hash]);
     if($query->num_rows > 0){
         // redirect
-        $url = $query->fetch_row()[0];
+		$result=$query->fetch_row();
+		$url = $result[0];
+		$hit = $result[1];
+		$hit =$hit + 1;
+		
+		$query = $db->query("UPDATE `redirects` SET `hits`= $hit WHERE `hash`=?", [$hash]);
+		
         header("Location: ".addhttp($url));
     }else{
         // return to index
