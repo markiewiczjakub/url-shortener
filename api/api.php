@@ -14,8 +14,8 @@ CREATE TABLE IF NOT EXISTS `redirects`  (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `hash` varchar(255) NOT NULL,
     `url` varchar(255) NOT NULL,
-	`hits` int(5) NOT NULL DEFAULT \'0\',
-	`created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `hits` int(5) NOT NULL DEFAULT \'0\',
+    `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ';
