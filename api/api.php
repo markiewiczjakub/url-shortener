@@ -46,7 +46,7 @@ if(isset($_GET['p'])){
     $query = $db->query("SELECT `url` FROM `redirects` WHERE `hash`=? LIMIT 1", [$hash]);
     if($query->num_rows > 0){
         // redirect
-        $url = $query->fetch_row()[0];
+        echo $url = $query->fetch_row()[0];die();
         header("Location: ".addhttp($url));
     }else{
         // return to index
